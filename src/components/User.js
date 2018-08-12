@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import Rank from './Rank'
-import ViewBox from './ViewBox'
+import Rank from './RankComp'
+import {ViewBox} from './ViewBoxComp'
 
 class User extends Component {
     render() {

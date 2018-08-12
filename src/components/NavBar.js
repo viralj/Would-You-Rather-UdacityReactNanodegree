@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import LoggedInUser from './LoggedInUser'
 
-class TopBar extends Component {
+class NavBar extends Component {
     render() {
         return (
             <nav>
@@ -23,4 +23,4 @@ class TopBar extends Component {
     }
 }
 
-export default TopBar
+export default NavBar

@@ -1,6 +1,21 @@
 import React, {Component} from 'react'
 
-import RankCounter from './RankCounter'
+class RankCounter extends Component {
+    render() {
+        const {label, score} = this.props;
+
+        return (
+            <div className='white z-depth-2 score-box'>
+                <div className='score-label'>
+                    {label}
+                </div>
+                <div className='score'>
+                    {score}
+                </div>
+            </div>
+        )
+    }
+}
 
 class Rank extends Component {
     render() {

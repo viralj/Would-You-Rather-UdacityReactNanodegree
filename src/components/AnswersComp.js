@@ -1,7 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import Question from './Question'
+import {Question} from './QuestionsComp'
+import {withRouter} from 'react-router-dom'
+import SmallQuestion from './SmallQuestion'
 
 class AnswerComp extends Component {
     render() {
@@ -88,8 +90,47 @@ class AnswersComp extends Component {
     }
 }
 
+class UnansweredComp extends Component {
+    render() {
+        const {filteredQuestions, questionId, history} = this.props;
+
+        return (
+            <div>
+                {filteredQuestions.map(id => (
+                    <div className='row'
+                         key={id}>
+                        {id === questionId
+                            ? <Question id={id}/>
+                            : <SmallQuestion
+                                id={id}
+                                onClick={() => history.push(`/question/${id}`)}
+                            />}
+                    </div>
+                ))}
+            </div>
+        )
+    }
+}
+
+function mapStateToUnansweredCompProps({authenticatedUser, questions, users}, props) {
+    const {id} = props.match.params;
+
+    const questionIds = Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp);
+
+    const user = (authenticatedUser && users.hasOwnProperty(authenticatedUser))
+        ? users[authenticatedUser]
+        : {answers: {}};
+
+    const filteredQuestions = questionIds.filter(id => !user.answers.hasOwnProperty(id));
+
+    return {
+        filteredQuestions,
+        questionId: id
+    }
+}
 
 
 export const Answer = AnswerComp;
 export const Answers = AnswersComp;
 export const Answered = connect(mapStateToProps)(AnsweredComp);
+export const Unanswered = withRouter(connect(mapStateToUnansweredCompProps)(UnansweredComp));

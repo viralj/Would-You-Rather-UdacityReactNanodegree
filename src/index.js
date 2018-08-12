@@ -3,9 +3,7 @@ import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 
-import './index.css'
-
-import middleware from './middleware'
+import middleware from './middlewares'
 import reducer from './reducers'
 import App from './components/App'
 

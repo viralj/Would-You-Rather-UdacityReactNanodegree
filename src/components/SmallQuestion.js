@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import SmallViewBox from './SmallViewBox'
+import {SmallViewBox} from './ViewBoxComp'
 
 class SmallQuestion extends Component {
     render() {

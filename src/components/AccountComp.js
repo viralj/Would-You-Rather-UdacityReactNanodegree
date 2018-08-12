@@ -7,7 +7,7 @@ import {setAuthenticatedUser} from '../actions/authenticateUser'
 import {handleAddUser} from '../actions/users'
 
 import {Answers} from './AnswersComp'
-import ViewBox from './ViewBox'
+import {ViewBox} from './ViewBoxComp'
 
 class AASignUp extends Component {
     state = {

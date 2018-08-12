@@ -6,7 +6,7 @@ import {BrowserRouter as Router} from 'react-router-dom'
 import {handleInitialData} from '../actions/questions'
 
 import Page from './Page'
-import TopBar from './TopBar'
+import NavBar from './NavBar'
 
 class App extends Component {
     componentDidMount() {
@@ -19,7 +19,7 @@ class App extends Component {
                 <Fragment>
                     <LoadingBar/>
                     <div>
-                        <TopBar/>
+                        <NavBar/>
                         <div className='row'>&nbsp;</div>
                         <Page/>
                     </div>

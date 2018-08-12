@@ -1,13 +1,12 @@
 import React, {Component} from 'react'
 import {Redirect, Route, Switch} from 'react-router-dom'
 
-import AddQuestion from './AddQuestion'
-import {Answered} from './AnswersComp'
+import {AddQuestion} from './QuestionsComp'
+import {Answered, Unanswered} from './AnswersComp'
 import ErrorPage from './ErrorPage'
 import Leaderboard from './Leaderboard'
 import {Login} from './AccountComp'
 import PrivateRoute from './PrivateRoute'
-import Unanswered from './Unanswered'
 
 class ViewPage extends Component {
     render() {

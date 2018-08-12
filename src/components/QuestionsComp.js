@@ -1,12 +1,61 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import {handleAnswerQuestion} from '../actions/questions'
+import {handleAnswerQuestion, handleAddQuestion} from '../actions/questions'
 
 import {Answers} from './AnswersComp'
-import ViewBox from './ViewBox'
+import {ViewBox} from './ViewBoxComp'
+import AskForm from './AskForm'
 
-class Question extends Component {
+class AddQuestionComp extends Component {
+    render() {
+        const {authenticated, avatarURL, addQuestion} = this.props;
+
+        const viewName = 'addquestion';
+        const title = 'Would you rather?';
+
+        let handleAddQuestion = () => {
+        };
+        if (authenticated) {
+            handleAddQuestion = addQuestion
+        }
+
+        return (
+            <div className='row'>
+                <ViewBox
+                    viewName={viewName}
+                    title={title}
+                    avatarURL={avatarURL}>
+                    <AskForm handleAddQuestion={handleAddQuestion}/>
+                </ViewBox>
+            </div>
+        )
+    }
+}
+
+function mapAddQuestionStateToProps({users, authenticatedUser}) {
+    const authenticated = !!authenticatedUser;
+
+    const avatarURL = users.hasOwnProperty(authenticatedUser)
+        ? users[authenticatedUser].avatarURL
+        : '';
+
+    return {
+        authenticated,
+        avatarURL
+    }
+}
+
+function mapAddQuestionDispatchToProps(dispatch) {
+    return {
+        addQuestion: (optionOneText, optionTwoText) => {
+            dispatch(handleAddQuestion(optionOneText, optionTwoText))
+        }
+    }
+}
+
+
+class QuestionComp extends Component {
     render() {
         const {optionOneText, optionTwoText, optionOneVotes, optionTwoVotes, user, id, avatarURL, answerQuestion} = this.props;
 
@@ -85,4 +134,5 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Question)
+export const Question =  connect(mapStateToProps, mapDispatchToProps)(QuestionComp);
+export const AddQuestion = connect(mapAddQuestionStateToProps, mapAddQuestionDispatchToProps)(AddQuestionComp);
