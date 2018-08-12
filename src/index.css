@@ -1,0 +1,166 @@
+p {
+    margin: 0;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.welcome-user {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 250px;
+}
+
+.navigation-bar {
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.view-page {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.navigation-button {
+    padding: 20px;
+    box-shadow: 0 0 10px 5px grey;
+    border-radius: 25px;
+}
+
+.navigation-button.active {
+    box-shadow: 0 0 5px 1px grey;
+    background-color: #fff;
+}
+
+.view-box {
+    margin: 40px;
+    border: 1px solid #333;
+    padding: 15px;
+    width: 800px;
+    max-width: 80%;
+    border-radius: 20px;
+    box-shadow: 10px 10px 10px -5px #aaa;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fdfdfd;
+}
+
+.view-box:hover, .score-box:hover {
+    background-color: #fff;
+    box-shadow: initial;
+}
+
+.view-box.small {
+    width: 500px;
+    align-items: center;
+}
+
+.user-avatar {
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+    border: 1px solid grey;
+}
+
+.user-avatar.small {
+    width: 100px;
+    height: 100px;
+}
+
+.user-avatar.tiny {
+    width: 5px;
+    height: 5px;
+}
+
+.details {
+    margin: 10px;
+    width: 400px;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 200%;
+    display: flex;
+    justify-content: center;
+    flex: 3;
+}
+
+.user-scores, .answers, .ask-form, .login-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 120%;
+    flex: 4;
+    align-items: center;
+}
+
+.answer-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+button:focus {
+    outline: 0;
+}
+
+.score-box {
+    margin: 10px;
+    padding: 10px;
+    width: 40%;
+    height: 75px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.score-label {
+    font-size: 75%;
+}
+
+.score {
+    font-size: 150%;
+}
+
+.arrow-back {
+    display: flex;
+    top: 20px;
+    left: 15px;
+    width: 50px;
+    height: 53px;
+    background-image: url('./icons/arrow-back.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 28px;
+    font-size: 0;
+}
+
+.error-page {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.logout_link {
+    cursor: pointer;
+}
