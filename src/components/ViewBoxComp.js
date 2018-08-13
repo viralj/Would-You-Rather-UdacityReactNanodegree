@@ -10,7 +10,7 @@ class ViewBoxComp extends Component {
                     <div className="card-panel white">
                         <div className='row'>
                             <div className='col s4'>
-                                <img className='responsive-img' src={`${avatarURL}`}/>
+                                <img alt='avatar' className='responsive-img' src={`${avatarURL}`}/>
                             </div>
                             <div className='col s8'>
                                 <div className='row'>
@@ -35,7 +35,7 @@ class SmallViewBoxComp extends Component {
                 <div className='row'>&nbsp;</div>
                 <div className='row'>
                     <div className='col s4'>
-                        <img className='responsive-img' src={`${avatarURL}`}/>
+                        <img alt='avatar' className='responsive-img' src={`${avatarURL}`}/>
                     </div>
                     <div className='col s8 center'>
                         <h5>{title}</h5>

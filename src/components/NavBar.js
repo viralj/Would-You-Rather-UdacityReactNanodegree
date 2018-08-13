@@ -10,7 +10,7 @@ class NavBar extends Component {
                     <div className="row">
                         <div className="nav-wrapper">
                             <div className='col s5 left'>
-                                <a href="#" className="brand-logo">Would you rather?</a>
+                                <a href="" className="brand-logo">Would you rather?</a>
                             </div>
                             <div className='col s7 right-align'>
                                 <LoggedInUser/>

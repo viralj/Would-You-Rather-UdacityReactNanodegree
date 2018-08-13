@@ -64,13 +64,14 @@ class QuestionComp extends Component {
             if (user.answers.hasOwnProperty(id)) {
                 activeOption = user.answers[id];
                 answered = true
-            } else {
+            }
+            else {
                 onClickOptionOne = () => answerQuestion(id, 'optionOne');
-                onClickOptionTwo = () => answerQuestion(id, 'optionTwo')
+                onClickOptionTwo = () => answerQuestion(id, 'optionTwo');
             }
         }
 
-        const viewName = 'question';
+        const viewName = 'questions';
         const title = 'Would you rather?';
 
         return (

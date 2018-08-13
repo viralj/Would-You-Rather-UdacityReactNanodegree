@@ -8,19 +8,23 @@ class LoggedInUser extends Component {
         const { userName, loggedIn, avatarURL, logout } = this.props;
 
         return (
-            <div className='welcome-user'>
+            <div>
+
+                {loggedIn &&
+
                 <div className='user'>
                     <p>Hello <strong>{userName}</strong>!</p>
                     <div
                         className='user-avatar tiny'
                         style={{
                             backgroundImage: `url(${avatarURL})`
-                        }} />
+                        }}/>
+                    <a className='right-align logout_link' onClick={logout}>Logout</a>
                 </div>
-                {loggedIn && (
-                    <a className='logout_link' onClick={logout}>Logout</a>
-                )}
+
+                }
             </div>
+
         )
     }
 }

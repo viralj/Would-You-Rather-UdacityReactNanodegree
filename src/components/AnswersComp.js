@@ -4,15 +4,16 @@ import {connect} from 'react-redux'
 import {Question} from './QuestionsComp'
 import {withRouter} from 'react-router-dom'
 import SmallQuestion from './SmallQuestion'
+import ErrorPage from './ErrorPage'
 
 class AnswerComp extends Component {
     render() {
-        const {optionText, onClick, isActive, answered} = this.props;
+        const {optionText, onClick} = this.props;
 
         return (
             <button
                 onClick={onClick}
-                className={`btn ${ isActive ? 'active' : 'inactive' } ${ answered && 'nohover' }`}>
+                className={`btn`}>
                 {optionText}
             </button>
         )
@@ -22,7 +23,6 @@ class AnswerComp extends Component {
 class AnsweredComp extends Component {
     render() {
         const {filteredQuestions} = this.props;
-
         return (
             <ul>
                 {filteredQuestions.map(id => (
@@ -64,6 +64,15 @@ class AnswersComp extends Component {
 
         const isActive = option => option === activeOption;
 
+        let one, two;
+        if(answered && isActive('optionOne')){
+            one = <p className='red-text'>Your answer</p>;
+            two = <p>&nbsp;</p>;
+        }
+        else if(answered && isActive('optionTwo')) {
+            one = <p>&nbsp;</p>;
+            two = <p className='red-text'>Your answer</p>;
+        }
         return (
             <div className='answers'>
                 <div className='answer-area'>
@@ -74,6 +83,7 @@ class AnswersComp extends Component {
                         answered={answered}/>
                     {answered &&
                     <p>{optionOneVotes} ({Math.round((100 * optionOneVotes / (optionOneVotes + optionTwoVotes)))} %)</p>}
+                    {one}
                 </div>
                 <h3>or</h3>
                 <div className='answer-area'>
@@ -84,6 +94,7 @@ class AnswersComp extends Component {
                         answered={answered}/>
                     {answered &&
                     <p>{optionTwoVotes} ({Math.round((100 * optionTwoVotes / (optionOneVotes + optionTwoVotes)))} %)</p>}
+                    {two}
                 </div>
             </div>
         )
@@ -103,7 +114,7 @@ class UnansweredComp extends Component {
                             ? <Question id={id}/>
                             : <SmallQuestion
                                 id={id}
-                                onClick={() => history.push(`/question/${id}`)}
+                                onClick={() => history.push(`/questions/${id}`)}
                             />}
                     </div>
                 ))}
@@ -117,11 +128,12 @@ function mapStateToUnansweredCompProps({authenticatedUser, questions, users}, pr
 
     const questionIds = Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
-    const user = (authenticatedUser && users.hasOwnProperty(authenticatedUser))
-        ? users[authenticatedUser]
-        : {answers: {}};
+    // const user = (authenticatedUser && users.hasOwnProperty(authenticatedUser))
+    //     ? users[authenticatedUser]
+    //     : {answers: {}};
 
-    const filteredQuestions = questionIds.filter(id => !user.answers.hasOwnProperty(id));
+    // const filteredQuestions = questionIds.filter(id => !user.answers.hasOwnProperty(id));
+    const filteredQuestions = questionIds;
 
     return {
         filteredQuestions,

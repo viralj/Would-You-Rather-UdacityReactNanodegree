@@ -93,7 +93,8 @@ class AASignUp extends Component {
 class AALogin extends Component {
     state = {
         view: 'initial',
-        redirect: false
+        redirect: false,
+        from : {}
     };
 
     optionOneText = 'Log in';
@@ -176,11 +177,16 @@ class AALogin extends Component {
         const {from} = {from: {pathname: '/unanswered'}};
 
         if (redirect === true) {
-            return <Redirect to={from}/>
+            if(this.props.location.state && this.props.location.state.from.pathname){
+                return <Redirect to={this.props.location.state.from.pathname}/>
+            }else{
+                return <Redirect to={from}/>
+            }
+
         }
 
         const viewName = 'login_view';
-        const title = 'Login or Sign up to play \`Would you rather?\`';
+        const title = 'Login or Sign up to play `Would you rather?`';
         const avatarURL = 'http://www.makstudios.co.uk/images/avatar4.png';
 
         return (
@@ -213,7 +219,6 @@ function mapDispatchToProps(dispatch) {
 class AASignIn extends Component {
     render() {
         const {users, onLogin} = this.props;
-
         return (
             <div className="input-field col s12">
                 <select

@@ -29,7 +29,7 @@ class ViewPage extends Component {
                         path='/unanswered'
                         component={Unanswered}/>
                     <PrivateRoute
-                        path='/question/:id'
+                        path='/questions/:id'
                         component={Unanswered}/>
                     <PrivateRoute
                         path='/answered'
