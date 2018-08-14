@@ -34,22 +34,6 @@ export default function users(state = {}, action) {
                 }
             }
         }
-        case DELETE_ANSWER_QUESTION : {
-            const {user, qid} = action;
-
-            return {
-                ...state,
-                [user]: {
-                    ...state[user],
-                    answers: Object.keys(state[user].answers).filter(question => question !== qid).reduce((newState, question) => {
-                        return {
-                            ...newState,
-                            [question]: state[user].answers[question]
-                        }
-                    }, {})
-                }
-            }
-        }
         case RECEIVE_USERS :
             return {
                 ...state,

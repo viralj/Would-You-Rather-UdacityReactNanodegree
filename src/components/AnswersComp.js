@@ -65,11 +65,11 @@ class AnswersComp extends Component {
         const isActive = option => option === activeOption;
 
         let one, two;
-        if(answered && isActive('optionOne')){
+        if (answered && isActive('optionOne')) {
             one = <p className='red-text'>Your answer</p>;
             two = <p>&nbsp;</p>;
         }
-        else if(answered && isActive('optionTwo')) {
+        else if (answered && isActive('optionTwo')) {
             one = <p>&nbsp;</p>;
             two = <p className='red-text'>Your answer</p>;
         }
@@ -103,10 +103,12 @@ class AnswersComp extends Component {
 
 class UnansweredComp extends Component {
     render() {
-        const {filteredQuestions, questionId, history} = this.props;
+        const {filteredQuestions, questionId, history, user} = this.props;
 
-        return (
-            <div>
+        let page;
+
+        if (Object.keys(user.answers).includes(questionId) || filteredQuestions.includes(questionId) || this.props.location.pathname.toString().toLowerCase() === "/unanswered".toLocaleLowerCase()) {
+            page = <div>
                 {filteredQuestions.map(id => (
                     <div className='row'
                          key={id}>
@@ -119,6 +121,14 @@ class UnansweredComp extends Component {
                     </div>
                 ))}
             </div>
+        } else {
+            page = <ErrorPage
+                location={this.props.location}
+            />
+        }
+        console.log(page);
+        return (
+            page
         )
     }
 }
@@ -128,16 +138,17 @@ function mapStateToUnansweredCompProps({authenticatedUser, questions, users}, pr
 
     const questionIds = Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 
-    // const user = (authenticatedUser && users.hasOwnProperty(authenticatedUser))
-    //     ? users[authenticatedUser]
-    //     : {answers: {}};
+    const user = (authenticatedUser && users.hasOwnProperty(authenticatedUser))
+        ? users[authenticatedUser]
+        : {answers: {}};
 
-    // const filteredQuestions = questionIds.filter(id => !user.answers.hasOwnProperty(id));
-    const filteredQuestions = questionIds;
+    const filteredQuestions = questionIds.filter(id => !user.answers.hasOwnProperty(id));
+    // const filteredQuestions = questionIds;
 
     return {
         filteredQuestions,
-        questionId: id
+        questionId: id,
+        user: user
     }
 }
 
